@@ -155,6 +155,8 @@ Inside the VirtualBox Windows VM:
 2. Pasted the Azure Arc onboarding script
 
 3. Executed the script
+   
+<img width="940" height="303" alt="image" src="https://github.com/user-attachments/assets/2fbf6659-ceaa-4c77-8e8b-7ebcab89e70d" />
 
 
 ---
@@ -168,6 +170,8 @@ PowerShell execution policy controls which scripts are allowed to run on the sys
 To allow the script execution temporarily, the following command was used:
 
     Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process
+
+<img width="940" height="90" alt="image" src="https://github.com/user-attachments/assets/0d3fad9b-473d-42c4-ba92-f736367c327d" />
 
 
 ## Why Scope Process Was Used?
@@ -189,8 +193,13 @@ After executing the onboarding script:
 - Azure authentication popup appeared
 - Azure credentials were entered
 - Login was completed successfully
+<img width="940" height="440" alt="image" src="https://github.com/user-attachments/assets/e3357803-2cfd-40af-b758-1721019e35f8" />
+
 
 The onboarding process continued after successful authentication.
+
+<img width="940" height="168" alt="image" src="https://github.com/user-attachments/assets/14c6aba4-0e4d-44d7-9bed-70a7e6eeac4f" />
+
 
 
 ## Step 5: Verify Azure Arc Connection
@@ -200,6 +209,8 @@ After successful authentication, the Azure Arc onboarding process completed.
 The Windows VirtualBox VM became visible under:
 
 Azure Portal → Azure Arc → Machines
+
+<img width="940" height="358" alt="image" src="https://github.com/user-attachments/assets/96ae428c-94a7-43ed-aa27-6620069c782e" />
 
 
 The VM was successfully connected as an Azure Arc-enabled machine.
