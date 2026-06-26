@@ -120,7 +120,7 @@ Azure Arc → Machines
 
 
 At this stage, the VirtualBox Windows VM was not visible because it was not connected to Azure.
-![Screenshot](screenshots/Lab-Setup/Screenshots/Azure-Arc.jpg)
+![Screenshot](Lab-Setup/Screenshots/Azure-Arc.jpg)
 
 
 ---
