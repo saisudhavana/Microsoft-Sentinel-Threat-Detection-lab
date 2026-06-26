@@ -157,40 +157,66 @@ Inside the VirtualBox Windows VM:
 
 ---
 
-# PowerShell Execution Policy Issue
+## PowerShell Execution Policy Issue
 
-While running the onboarding script, a PowerShell execution policy restriction occurred.
+While running the Azure Arc onboarding script inside the Windows VM, a PowerShell execution policy restriction occurred.
+
+PowerShell execution policy controls which scripts are allowed to run on the system. Since the Azure Arc onboarding script needed to execute, the restriction prevented the script from running successfully.
 
 To allow the script execution temporarily, the following command was used:
 
+    Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process
 
-```powershell
-Set-ExecutionPolicy -ExecutionPolicy Bypass -Scope Process
 
-Why Scope Process Was Used?
+## Why Scope Process Was Used?
+
 The Process scope was selected because:
-It applies only to the current PowerShell session
-It does not permanently modify the system execution policy
-Closing PowerShell restores the previous security configuration
-This allows the onboarding script to execute without making permanent changes.
-**Step 4: Azure Authentication**
-After executing the script:
-Azure authentication popup appeared
-Azure credentials were entered
-Login was completed successfully
 
-**Step 5: Verify Azure Arc Connection**
-After successful authentication, the onboarding process completed.
-The Windows VM became visible under:
+- It applies only to the current PowerShell session
+- It does not permanently modify the system execution policy
+- It does not modify machine-wide PowerShell security settings
+- Closing PowerShell restores the previous execution policy configuration
+
+This allows the Azure Arc onboarding script to execute without making permanent security changes.
+
+
+## Step 4: Azure Authentication
+
+After executing the onboarding script:
+
+- Azure authentication popup appeared
+- Azure credentials were entered
+- Login was completed successfully
+
+The onboarding process continued after successful authentication.
+
+
+## Step 5: Verify Azure Arc Connection
+
+After successful authentication, the Azure Arc onboarding process completed.
+
+The Windows VirtualBox VM became visible under:
+
 Azure Portal → Azure Arc → Machines
-The VM was now successfully connected to Azure Arc.
-Result
+
+
+The VM was successfully connected as an Azure Arc-enabled machine.
+
+
+## Result
+
 Azure can now recognize and manage the Windows VirtualBox machine.
+
 The machine is now ready for:
-Azure Monitor Agent installation
-Data Collection Rule assignment
-Security Event collection
-Microsoft Sentinel monitoring
-Next Step
+
+- Azure Monitor Agent (AMA) installation
+- Data Collection Rule (DCR) assignment
+- Windows Security Event collection
+- Microsoft Sentinel monitoring
+
+
+## Next Step
+
 The next step is installing Azure Monitor Agent (AMA).
-AMA will collect logs from the Azure Arc enabled machine and send them to the Log Analytics Workspace using Data Collection Rules.
+
+AMA will collect logs from the Azure Arc-enabled machine and send them to the Log Analytics Workspace using Data Collection Rules.
