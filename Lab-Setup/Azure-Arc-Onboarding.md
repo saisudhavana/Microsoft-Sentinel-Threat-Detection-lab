@@ -140,6 +140,7 @@ Azure generated an onboarding script.
 
 This script was required to be executed inside the Windows VM.
 
+<img width="940" height="659" alt="image" src="https://github.com/user-attachments/assets/0d04cffd-8bb5-4035-b8b9-661aaed5fe7e" />
 
 ---
 
