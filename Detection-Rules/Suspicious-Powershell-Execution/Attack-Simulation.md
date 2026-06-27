@@ -37,7 +37,6 @@ Attackers may abuse the bypass option to execute commands without following the 
 
 ## Command Used
 
-```powershell
 powershell.exe -ExecutionPolicy Bypass -Command "whoami"
 
 Explanation
