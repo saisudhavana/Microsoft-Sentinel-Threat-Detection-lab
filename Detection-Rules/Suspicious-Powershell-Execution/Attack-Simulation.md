@@ -347,7 +347,7 @@ A PowerShell script contains commands that are executed by the PowerShell engine
 # TestScript.ps1 Content
 
 
-```powershell
+
 Write-Output "DownloadString Test Executed Successfully"
 
 <img width="1917" height="290" alt="image" src="https://github.com/user-attachments/assets/b6475ca8-74e5-44af-b637-22408f1ae63e" />
