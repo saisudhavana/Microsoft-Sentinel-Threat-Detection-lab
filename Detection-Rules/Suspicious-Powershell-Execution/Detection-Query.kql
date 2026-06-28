@@ -1,1 +1,13 @@
+SecurityEvent
+| where TimeGenerated > ago(1h)
+| where EventID == 4688
+| extend ProcessName = tostring(split(NewProcessName, @"\")[-1])
+| extend CommandLineLower = tolower(CommandLine)
+| where ProcessName in~ ("powershell.exe", "pwsh.exe")
+| where CommandLineLower has_any ("-encodedcommand", "-enc", "bypass", "-nop", "-noprofile", "downloadstring", "downloadfile", "invoke-expression", "iex")
+|extend ISt=TimeGenerated+5.5h
+| project ISt, Computer, Account, ProcessName, CommandLine, ParentProcessName
+
+
+
 
