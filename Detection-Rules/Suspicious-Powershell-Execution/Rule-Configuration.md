@@ -66,15 +66,9 @@ Screenshot:
 # Rule Details
 
 
-Rule Name:
+Rule Name:Suspicious PowerShell Execution
 
-Suspicious PowerShell Execution
-
-
-Severity:
-
-Medium
-
+Severity:Medium
 
 Description:
 
@@ -92,9 +86,7 @@ Screenshot:
 # Query Configuration
 
 
-Table Used:
-
-SecurityEvent
+Table Used: SecurityEvent
 
 
 Reason:
@@ -109,18 +101,18 @@ Event ID 4688
 (Process Creation Event)
 
 
-KQL Query:
+## KQL Query:
 
 <img width="1912" height="843" alt="image" src="https://github.com/user-attachments/assets/c0271bb7-57bd-486c-97a6-35a779a0b1a1" />
 
 
 ---
 
-Entity Mapping
+# Entity Mapping
 
-Configured entities:
+## Configured entities:
 
-Account:AccountName
+### Account:AccountName
 
 Host:Computer
 
