@@ -390,7 +390,7 @@ Machine context
 
 ---
 
-Step 2: Start Python HTTP Server
+## Step 2: Start Python HTTP Server
 
 Command executed:
 
@@ -425,7 +425,7 @@ The Windows VM is acting as a temporary server hosting PowerShell files.
 
 ---
 
-Step 3: Verify Hosted Files
+## Step 3: Verify Hosted Files
 
 Opened in browser:
 
@@ -444,7 +444,7 @@ This confirms that the HTTP server is successfully serving the files.
 
 ---
 
-Step 4: Execute Download and Execution Command
+## Step 4: Execute Download and Execution Command
 
 Command executed:
 
@@ -514,9 +514,12 @@ Read Script Content
 
 Invoke-Expression Executes Content
 
-Output:
+## Output:
 
 DownloadString Test Executed Successfully
+
+<img width="1531" height="61" alt="image" src="https://github.com/user-attachments/assets/3a12c950-9a38-4cc3-944b-092f05799293" />
+
 
 This confirms the script was downloaded and executed successfully.
 
@@ -556,7 +559,6 @@ Victim Windows Machine
         |
 
 PowerShell downloads script
-   |
 
         |
 
@@ -582,7 +584,7 @@ Allows remote execution of PowerShell code
 
 ---
 
-Sentinel Detection Logic
+## Sentinel Detection Logic
 
 The analytics rule checks for suspicious PowerShell patterns:
 
