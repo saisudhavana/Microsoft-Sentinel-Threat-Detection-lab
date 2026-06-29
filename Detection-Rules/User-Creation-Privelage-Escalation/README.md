@@ -28,7 +28,7 @@ The attacker then assigns administrator privileges to the newly created account.
 Attack Flow:
 
 Initial Access
-      |
+      ||
 
 Create New User Account
 
