@@ -25,22 +25,23 @@ After gaining access, the attacker creates a new local account.
 
 The attacker then assigns administrator privileges to the newly created account.
 
-Attack Flow:
+## Attack Flow
 
 Initial Access
-      ||
+
+↓
 
 Create New User Account
 
-      |
+↓
 
 Add User Into Administrators Group
 
-      |
+↓
 
 Privilege Escalation
 
-      |
+↓
 
 Persistence
 
@@ -220,21 +221,35 @@ These policies allow Windows to record account changes.
 Data Flow
 
 Windows VM
-     |
+
+↓
+
 Azure Monitor Agent (AMA)
-     |
+
+↓
+
 Data Collection Rule (DCR)
-     |
+
+↓
+
 Log Analytics Workspace
-     |
-SecurityEvent Table
-     | 
+
+↓
+
 Microsoft Sentinel
+
+↓
+
+Analytics Rules
+
+↓
+
+Alerts & Incidents
 
 
 ---
 
-Detection Result
+### Detection Result
 
 The simulation generated:
 
