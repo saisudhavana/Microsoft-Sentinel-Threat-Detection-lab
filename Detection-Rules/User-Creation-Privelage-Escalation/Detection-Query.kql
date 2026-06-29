@@ -1,1 +1,8 @@
-
+SecurityEvent
+| where EventID == 4720 or EventID == 4732
+| where TimeGenerated > ago(10m)
+| where EventID == 4720
+   or (EventID == 4732 and TargetUserName == "Administrators")
+|extend ist=TimeGenerated+5.5h
+| project TimeGenerated,EventID,Computer,SubjectUserName,TargetUserName,MemberName
+| order by TimeGenerated desc
