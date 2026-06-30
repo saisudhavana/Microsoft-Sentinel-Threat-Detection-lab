@@ -161,23 +161,23 @@ Attack flow:
 
 Attacker Gains Access
 
-          ↓
+           ↓
 
 Creates Scheduled Task
 
-          ↓
+           ↓
 
 Configures Trigger
 
-          ↓
+           ↓
 
 Task Executes Automatically
 
-          ↓
+           ↓
 
 Malicious Code Runs
 
-          ↓
+           ↓
 
 Attacker Maintains Access
 
@@ -204,15 +204,15 @@ Example:
 
 User Logs In
 
-       ↓
+        ↓
 
 Scheduled Task Triggered
 
-       ↓
+        ↓
 
 Malicious PowerShell Executes
 
-       ↓
+        ↓
 
 Attacker Regains Access
 
@@ -232,15 +232,15 @@ Flow:
 
 Victim Machine
 
-       ↓
+        ↓
 
 Malware Executes
 
-       ↓
+        ↓
 
 Connects To C2 Server
 
-       ↓
+        ↓
 
 Receives Commands
 
@@ -279,23 +279,23 @@ Steps performed:
 
 Create PowerShell Script
 
-        ↓
+         ↓
 
 Create Scheduled Task
 
-        ↓
+         ↓
 
 Configure Trigger
 
-        ↓
+         ↓
 
 Configure PowerShell Execution
 
-        ↓
+         ↓
 
 Generate Windows Security Event
 
-        ↓
+         ↓
 
 Detect Using Microsoft Sentinel
 
@@ -335,26 +335,26 @@ The event contains:
 
 Windows VM
 
-<div align="center">↓</div>
+      ↓  
 
 Azure Monitor Agent Scheduled Task
 
-<div align="center">↓</div>
+      ↓
 
 AMA Service Runs
 
-<div align="center">↓</div>
+      ↓
 
 Data Collection Rule (DCR)
 
-<div align="center">↓</div>
+      ↓
 
 Log Analytics Workspace
 
-<div align="center">↓</div>
+      ↓
 
 SecurityEvent Table
 
-<div align="center">↓</div>
+      ↓
 
 Microsoft Sentinel
