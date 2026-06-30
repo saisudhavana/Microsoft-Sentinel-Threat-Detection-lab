@@ -1,0 +1,18 @@
+SecurityEvent
+| where EventID == 4698
+| extend TaskContent = tostring(EventData)
+| where TaskContent has_any (
+    "powershell.exe",
+    "cmd.exe",
+    "wscript.exe",
+    "cscript.exe",
+    "mshta.exe",
+    "rundll32.exe",
+    "regsvr32.exe"
+)
+| project 
+    TimeGenerated,
+    Computer,
+    SubjectUserName,
+    TaskContent
+| order by TimeGenerated desc
