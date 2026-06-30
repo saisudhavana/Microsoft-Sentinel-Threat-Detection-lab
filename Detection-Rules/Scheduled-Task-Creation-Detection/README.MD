@@ -41,11 +41,11 @@ Example:
 
 User Login
 
-      ↓
+      |
 
 Task Scheduler Starts
 
-      ↓
+      |
 
 Configured Action Executes
 
