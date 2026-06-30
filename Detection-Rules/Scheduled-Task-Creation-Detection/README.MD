@@ -39,15 +39,7 @@ Examples:
 Example:
 
 
-User Login
-
-      |
-
-Task Scheduler Starts
-
-      |
-
-Configured Action Executes
+User Login  ->  Task Scheduler Starts  ->  Configured Action Executes
 
 
 
