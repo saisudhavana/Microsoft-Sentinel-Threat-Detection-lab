@@ -335,31 +335,32 @@ The event contains:
 
 
 
+<div align="center">
+
 Windows VM
 
-      ↓
+↓
 
-Security Event Logs
+Azure Monitor Agent Scheduled Task
 
-      ↓
+↓
 
-Azure Monitor Agent (AMA)
+AMA Service Runs
 
-      ↓
+↓
 
 Data Collection Rule (DCR)
 
-      ↓
+↓
 
 Log Analytics Workspace
 
-      ↓
+↓
 
 SecurityEvent Table
 
-      ↓
+↓
 
-Microsoft Sentinel Analytics Rule
+Microsoft Sentinel
 
-      ↓
-
+</div>
