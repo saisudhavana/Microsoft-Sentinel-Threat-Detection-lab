@@ -91,7 +91,7 @@ Flow:
 
 Windows VM
 
-     
+      |
 
 Azure Monitor Agent Scheduled Task
 
