@@ -63,10 +63,6 @@ Example:
 Trigger:
 User Login
 
-
-      ↓
-
-
 Action:
 powershell.exe script.ps1
 
@@ -95,7 +91,7 @@ Flow:
 
 Windows VM
 
-      ↓
+|
 
 Azure Monitor Agent Scheduled Task
 
