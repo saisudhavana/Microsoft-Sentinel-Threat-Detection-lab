@@ -333,34 +333,18 @@ The event contains:
 
 # Sentinel Detection Flow
 
-
-
-<div align="center">
-
 Windows VM
 
-↓
+<div align="center">↓</div>Azure Monitor Agent Scheduled Task
 
-Azure Monitor Agent Scheduled Task
+<div align="center">↓</div>AMA Service Runs
 
-↓
+<div align="center">↓</div>Data Collection Rule (DCR)
 
-AMA Service Runs
+<div align="center">↓</div>Log Analytics Workspace
 
-↓
+<div align="center">↓</div>SecurityEvent Table
 
-Data Collection Rule (DCR)
-
-↓
-
-Log Analytics Workspace
-
-↓
-
-SecurityEvent Table
-
-↓
-
-Microsoft Sentinel
+<div align="center">↓</div>Microsoft Sentinel
 
 </div>
